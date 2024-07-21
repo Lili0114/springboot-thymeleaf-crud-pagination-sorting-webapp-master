@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assign Category</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Book Management</a>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/index_user}">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/assignCategories}">Assign Category</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/showCategories}">Show Categories</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/showProfile}">Profile</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container my-2">
+    <h1>Assign Category</h1>
+
+    <form action="/assignCategory/save" method="post" style="align-self: center">
+        <div class="form-group row justify-content-end">
+            <label for="book_id" class="col-sm-2 col-form-label">Select Book:</label>
+            <div class="col-sm-10">
+                <select class="custom-select mr-sm-2" style="width: 60%" name="book_id" id="book_id">
+                    <option th:each="book : ${books}" th:value="${book.id}" th:text="${book.title}"></option>
+                </select>
+            </div>
+
+            <label for="category_id" class="col-sm-2 col-form-label">Select Category:</label>
+            <div class="col-sm-10">
+                <select class="custom-select mr-sm-2" style="width: 60%" name="category_id" id="category_id">
+                    <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
+                </select>
+            </div>
+
+            <div class="col-sm-10 offset-sm-2">
+                <button type="submit" class="btn btn-outline-info" style="margin-left: 410px">Assign Category</button>
+            </div>
+
+            <div th:if="${error}" class="col-sm-10 offset-sm-2 alert alert-danger" role="alert">
+                <strong>Error:</strong> <span th:text="${error}"></span>
+            </div>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

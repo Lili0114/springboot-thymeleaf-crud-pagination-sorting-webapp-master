@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Book Management</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<a class="navbar-brand" href="#">Book Management</a>
+	<div class="collapse navbar-collapse" id="navbarNav">
+		<ul class="navbar-nav">
+			<li class="nav-item">
+				<a class="nav-link" th:href="@{/index_user}">Home</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" th:href="@{/assignCategories}">Assign Category</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" th:href="@{/showCategories}">Show Categories</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" th:href="@{/showProfile}">Profile</a>
+			</li>
+		</ul>
+	</div>
+</nav>
+	<div class="container">
+		<h1>Book Management</h1>
+		<hr>
+		<h2>Save Book</h2>
+
+		<form action="#" th:action="@{/saveBook}" th:object="${book}"
+			method="POST">
+			<input type="text" th:field="*{title}"
+				placeholder="Book title..." class="form-control mb-4 col-4">
+				
+				<input type="text" th:field="*{author}"
+				placeholder="Book author..." class="form-control mb-4 col-4">
+				
+				<input type="number" th:field="*{publication}"
+				placeholder="Book publication (year)..." class="form-control mb-4 col-4">
+				
+				<button type="submit" class="btn btn-info col-2"> Save Book</button>
+		</form>
+		
+		<hr>
+		
+		<a th:href = "@{/index_user}"> Back to Book List</a>
+	</div>
+</body>
+</html>

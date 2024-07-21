@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User Profile</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Book Management</a>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/index_user}">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/assignCategories}">Assign Category</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/showCategories}">Show Categories</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/showProfile}">Profile</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container my-2">
+    <h1>User Profile</h1>
+    <p th:text="'Username: ' + ${user.username}"></p>
+    <p th:text="'Email: ' + ${user.email}"></p>
+
+    <h2>Read Books</h2>
+    <table border="1" class="table table-striped table-responsive-md" style="background-color: #e6f7ff;">
+        <thead style="color: #004080;">
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Publication</th>
+            <th>Read Date</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Thymeleaf syntax to iterate over user's read books -->
+        <tr th:each="userBook : ${userBooks}">
+            <td th:text="${userBook.book.title}"></td>
+            <td th:text="${userBook.book.author}"></td>
+            <td th:text="${userBook.book.publication}"></td>
+            <td th:text="${#dates.format(userBook.readDate, 'yyyy-MM-dd')}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
